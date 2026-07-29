@@ -1,1 +1,0 @@
-loader.load("assets/models/hal_tejas.glb", (gltf) => {
