@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyDefender - Indian Air Force</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyDefender</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
+<script type="importmap">
+{
+  "imports": {
+    "three":"https://unpkg.com/three@0.165.0/build/three.module.js"
+  }
+}
+</script>
+
 </head>
 
 <body>
 
-<header>
-    <h1>🇮🇳 SkyDefender</h1>
-    <p>Explore the Power of the Indian Air Force</p>
-</header>
+<h1>🇮🇳 SKYDEFENDER</h1>
 
-<section class="hero">
-    <h2>Protecting the Nation, Touching the Sky</h2>
-    <p>A 3D educational website showcasing Indian Air Force aircraft.</p>
+<p>Indian Air Force 3D Experience</p>
 
-    <button>Explore Aircraft</button>
-</section>
+<div id="scene"></div>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
