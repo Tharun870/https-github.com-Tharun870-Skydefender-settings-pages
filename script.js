@@ -6,73 +6,75 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87CEEB);
 
 const camera = new THREE.PerspectiveCamera(
-  75,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
 );
 
-camera.position.set(0, 2, 8);
+camera.position.set(0,2,8);
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = true;
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.shadowMap.enabled=true;
 document.body.appendChild(renderer.domElement);
 
 // Lights
-const ambient = new THREE.AmbientLight(0xffffff, 1);
-scene.add(ambient);
+scene.add(new THREE.AmbientLight(0xffffff,1));
 
-const sun = new THREE.DirectionalLight(0xffffff, 2);
-sun.position.set(10, 10, 10);
-sun.castShadow = true;
+const sun=new THREE.DirectionalLight(0xffffff,2);
+sun.position.set(10,10,10);
 scene.add(sun);
 
 // Ground
-const ground = new THREE.Mesh(
-  new THREE.PlaneGeometry(100, 100),
-  new THREE.MeshStandardMaterial({ color: 0x2e8b57 })
+const ground=new THREE.Mesh(
+new THREE.PlaneGeometry(100,100),
+new THREE.MeshStandardMaterial({color:0x2E8B57})
 );
 
-ground.rotation.x = -Math.PI / 2;
-ground.receiveShadow = true;
+ground.rotation.x=-Math.PI/2;
+ground.position.y=-1;
 scene.add(ground);
 
 // Controls
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);
 
 // Load Tejas
-const loader = new GLTFLoader();
+const loader=new GLTFLoader();
 
 loader.load(
-  "assets/models/hal_tejas.glb", // Change this if your filename is different
-  (gltf) => {
-    const jet = gltf.scene;
+"assets/models/Tejas.glb",
 
-    jet.scale.set(1, 1, 1);
-    jet.position.set(0, 0, 0);
+(gltf)=>{
 
-    jet.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true;
-      }
-    });
+const tejas=gltf.scene;
 
-    scene.add(jet);
+tejas.scale.set(1,1,1);
 
-    function animate() {
-      requestAnimationFrame(animate);
+tejas.position.set(0,0,0);
 
-      jet.rotation.y += 0.003;
+scene.add(tejas);
 
-      controls.update();
-      renderer.render(scene, camera);
-    }
+animate();
 
-    animate();
-  },
-  undefined,
-  (error) => {
-    console.error(error);
-  }
+},
+
+undefined,
+
+(error)=>{
+
+console.log(error);
+
+}
+
 );
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+controls.update();
+
+renderer.render(scene,camera);
+
+}
